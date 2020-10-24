@@ -1,3 +1,3 @@
-export const GenAsNumberArray = (rows: number = 0): number[][] => {
-  return [[1]];
-};
+export {
+  CreateAsNumberArray
+} from './generator'
