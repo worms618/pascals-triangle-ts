@@ -1,6 +1,38 @@
 import { CreateAsNumberArray } from "../src/generator";
 
 describe('CreateAsNumberArray', () => {
+  describe('Should throw error, when argument rows is not valid', () => {
+    test('Rows is -1', () => {
+      expect(() => {
+        CreateAsNumberArray(-1)
+      }).toThrow('Argument rows needs to be equal or greater than zero');
+    });
+
+    test('Rows is Number.MIN_SAFE_INTEGER', () => {
+      expect(() => {
+        CreateAsNumberArray(Number.MIN_SAFE_INTEGER)
+      }).toThrow('Argument rows needs to be equal or greater than zero');
+    });
+
+    test('Rows is 0.1', () => {
+      expect(() => {
+        CreateAsNumberArray(0.1)
+      }).toThrow('Argument rows needs to be an integer');
+    });
+
+    test('Rows is Number.NaN', () => {
+      expect(() => {
+        CreateAsNumberArray(Number.NaN)
+      }).toThrow('Argument rows needs to be an integer');
+    });
+
+    test('Rows is Number.MAX_VALUE', () => {
+      expect(() => {
+        CreateAsNumberArray(Number.MAX_VALUE)
+      }).toThrow('Argument rows needs to be a safe integer');
+    });
+  });
+
   describe('Arguments: default, one, two', () => {
     describe('Call with default argument', () => {
       let ptAsNumberArray: number[][];

@@ -1,3 +1,3 @@
 export {
   CreateAsNumberArray
-} from './generator'
+} from './generator';
