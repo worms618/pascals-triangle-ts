@@ -1,44 +1,16 @@
-import { CreateAsNumberArray } from "../src/generator";
+import { AsNumberGenerator } from "../src/generators";
 
-describe('CreateAsNumberArray', () => {
-  describe('Should throw error, when argument rows is not valid', () => {
-    test('Rows is -1', () => {
-      expect(() => {
-        CreateAsNumberArray(-1)
-      }).toThrow('Argument rows needs to be equal or greater than zero');
-    });
+import { firstElevenPascalsTriangleRowsAsNumberArray } from "./data.test";
 
-    test('Rows is Number.MIN_SAFE_INTEGER', () => {
-      expect(() => {
-        CreateAsNumberArray(Number.MIN_SAFE_INTEGER)
-      }).toThrow('Argument rows needs to be equal or greater than zero');
-    });
-
-    test('Rows is 0.1', () => {
-      expect(() => {
-        CreateAsNumberArray(0.1)
-      }).toThrow('Argument rows needs to be an integer');
-    });
-
-    test('Rows is Number.NaN', () => {
-      expect(() => {
-        CreateAsNumberArray(Number.NaN)
-      }).toThrow('Argument rows needs to be an integer');
-    });
-
-    test('Rows is Number.MAX_VALUE', () => {
-      expect(() => {
-        CreateAsNumberArray(Number.MAX_VALUE)
-      }).toThrow('Argument rows needs to be a safe integer');
-    });
-  });
-
+describe('AsNumberGenerator', () => {
   describe('Arguments: default, one, two', () => {
     describe('Call with default argument', () => {
+      let generator: AsNumberGenerator;
       let ptAsNumberArray: number[][];
       let elementAtIndexZero: number[];
       beforeEach(() => {
-        ptAsNumberArray = CreateAsNumberArray();
+        generator = new AsNumberGenerator();
+        ptAsNumberArray = generator.generate();
         elementAtIndexZero = ptAsNumberArray[0];
       });
 
@@ -60,11 +32,13 @@ describe('CreateAsNumberArray', () => {
     });
 
     describe('Call with number one as argument', () => {
+      let generator: AsNumberGenerator;
       let ptAsNumberArray: number[][];
       let elementAtIndexZero: number[];
       let elementAtIndexOne: number[];
       beforeEach(() => {
-        ptAsNumberArray = CreateAsNumberArray(1);
+        generator = new AsNumberGenerator();
+        ptAsNumberArray = generator.generate(1);
         elementAtIndexZero = ptAsNumberArray[0];
         elementAtIndexOne = ptAsNumberArray[1];
       });
@@ -95,12 +69,14 @@ describe('CreateAsNumberArray', () => {
     });
 
     describe('Call with number two as argument', () => {
+      let generator: AsNumberGenerator;
       let ptAsNumberArray: number[][];
       let elementAtIndexZero: number[];
       let elementAtIndexOne: number[];
       let elementAtIndexTwo: number[];
       beforeEach(() => {
-        ptAsNumberArray = CreateAsNumberArray(2);
+        generator = new AsNumberGenerator();
+        ptAsNumberArray = generator.generate(2);
         elementAtIndexZero = ptAsNumberArray[0];
         elementAtIndexOne = ptAsNumberArray[1];
         elementAtIndexTwo = ptAsNumberArray[2];
@@ -140,27 +116,18 @@ describe('CreateAsNumberArray', () => {
     });
   });
 
-  describe('Arguments based on predefined pascals triangle in array of array', () => {
-    const pascalsTriangleAsNumberArray = [
-      [1],
-      [1,  1],
-      [1,  2,  1],
-      [1,  3,  3,   1],
-      [1,  4,  6,   4,   1],
-      [1,  5, 10,  10,   5,   1],
-      [1,  6, 15,  20,  15,   6,   1],
-      [1,  7, 21,  35,  35,  21,   7,   1],
-      [1,  8, 28,  56,  70,  56,  28,   8,  1],
-      [1,  9, 36,  84, 126, 126,  84,  36,  9,  1],
-      [1, 10, 45, 120, 210, 252, 210, 120, 45, 10, 1]
-    ];
+  describe('Arguments based on predefined pascals triangle', () => {
+    const pascalsTriangle: number[][] = firstElevenPascalsTriangleRowsAsNumberArray;
+    const rowIndices: number[] = pascalsTriangle.map((value, index) => index);
+    let generator: AsNumberGenerator;
+    beforeEach(() => {
+      generator = new AsNumberGenerator();
+    });
 
-    const rowsTestCases = pascalsTriangleAsNumberArray.map((value, index) => index);
-
-    test.each(rowsTestCases)
+    test.each(rowIndices)
       ('Argument rows: %i', (rows) => {
-        const createPascalsTriangle = CreateAsNumberArray(rows);
-        const expectedPascalsTriangle = pascalsTriangleAsNumberArray.slice(0, rows + 1);
+        const createPascalsTriangle = generator.generate(rows);
+        const expectedPascalsTriangle = pascalsTriangle.slice(0, rows + 1);
 
         expect(createPascalsTriangle).toEqual(expectedPascalsTriangle);
       })
