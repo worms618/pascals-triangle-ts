@@ -8,7 +8,6 @@
     "test": "jest",
     "prebuild": "tslint -c tslint.json -p tsconfig.json --fix && npm test",
     "build": "tsc",
-    "preversion": "npm test",
     "version": "npm run build",
     "postversion": "git push"
   },
