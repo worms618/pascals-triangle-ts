@@ -1,6 +1,6 @@
 import { IGenericGenerator } from "./generator.interface";
 
-import { validateArgumentRows } from "../utils";
+import { validateArgumentRows } from "./generator.validators";
 
 export abstract class GenericGenerator<T> implements IGenericGenerator<T> {
   constructor(protected rowZeroValue: T) {

@@ -1,4 +1,4 @@
-import { GenericGenerator } from "./generator";
+import { GenericGenerator } from "./generator.generic";
 
 export class AsNumberGenerator extends GenericGenerator<number> {
   constructor() {

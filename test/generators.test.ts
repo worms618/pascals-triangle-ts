@@ -1,4 +1,4 @@
-import { AsNumberGenerator } from "../src/generators";
+import { AsNumberGenerator, AsBigIntGenerator } from "../src/generator";
 
 import { firstElevenPascalsTriangleRowsAsNumberArray } from "./data.test";
 
@@ -130,6 +130,139 @@ describe('AsNumberGenerator', () => {
         const expectedPascalsTriangle = pascalsTriangle.slice(0, rows + 1);
 
         expect(createPascalsTriangle).toEqual(expectedPascalsTriangle);
-      })
+      });
+  });
+
+});
+
+describe('AsBigIntGenerator', () => {
+  describe('Arguments: default, one, two', () => {
+    describe('Call with default argument', () => {
+      let generator: AsBigIntGenerator;
+      let ptAsNumberArray: bigint[][];
+      let elementAtIndexZero: bigint[];
+      beforeEach(() => {
+        generator = new AsBigIntGenerator();
+        ptAsNumberArray = generator.generate();
+        elementAtIndexZero = ptAsNumberArray[0];
+      });
+
+      test('Should not return empty array', () => {
+        expect(ptAsNumberArray).not.toHaveLength(0);
+      });
+
+      test('Should return array with length one', () => {
+        expect(ptAsNumberArray).toHaveLength(1);
+      });
+
+      test('Element at index zero, should have a length of one', () => {
+        expect(elementAtIndexZero).toHaveLength(1);
+      });
+
+      test('Element at index zero, should be array with number one', () => {
+        expect(elementAtIndexZero).toEqual([BigInt(1)]);
+      });
+    });
+
+    describe('Call with number one as argument', () => {
+      let generator: AsBigIntGenerator;
+      let ptAsNumberArray: bigint[][];
+      let elementAtIndexZero: bigint[];
+      let elementAtIndexOne: bigint[];
+      beforeEach(() => {
+        generator = new AsBigIntGenerator();
+        ptAsNumberArray = generator.generate(1);
+        elementAtIndexZero = ptAsNumberArray[0];
+        elementAtIndexOne = ptAsNumberArray[1];
+      });
+
+      test('Should not be an empty array', () => {
+        expect(ptAsNumberArray).not.toHaveLength(0);
+      });
+
+      test('Should return array with length two', () => {
+        expect(ptAsNumberArray).toHaveLength(2);
+      });
+
+      test('Element at index zero should have a length of one', () => {
+        expect(elementAtIndexZero).toHaveLength(1);
+      });
+
+      test('Element at index one should have a length of two', () => {
+        expect(elementAtIndexOne).toHaveLength(2);
+      });
+
+      test('Element at index zero should be array with number one', () => {
+        expect(elementAtIndexZero).toEqual([BigInt(1)]);
+      });
+
+      test('Element at index one should be array with two ones', () => {
+        expect(elementAtIndexOne).toEqual([BigInt(1), BigInt(1)]);
+      });
+    });
+
+    describe('Call with number two as argument', () => {
+      let generator: AsBigIntGenerator;
+      let ptAsNumberArray: bigint[][];
+      let elementAtIndexZero: bigint[];
+      let elementAtIndexOne: bigint[];
+      let elementAtIndexTwo: bigint[];
+      beforeEach(() => {
+        generator = new AsBigIntGenerator();
+        ptAsNumberArray = generator.generate(2);
+        elementAtIndexZero = ptAsNumberArray[0];
+        elementAtIndexOne = ptAsNumberArray[1];
+        elementAtIndexTwo = ptAsNumberArray[2];
+      });
+
+      test('Should not be an empty array', () => {
+        expect(ptAsNumberArray).not.toHaveLength(0);
+      });
+
+      test('Should return array with length three', () => {
+        expect(ptAsNumberArray).toHaveLength(3);
+      });
+
+      test('Element at index zero should have a length of one', () => {
+        expect(elementAtIndexZero).toHaveLength(1);
+      });
+
+      test('Element at index one should have a length of two', () => {
+        expect(elementAtIndexOne).toHaveLength(2);
+      });
+
+      test('Element at index two should have a length of three', () => {
+        expect(elementAtIndexTwo).toHaveLength(3);
+      });
+
+      test('Element at index zero should be array with number one', () => {
+        expect(elementAtIndexZero).toEqual([BigInt(1)]);
+      });
+
+      test('Element at index one should be array with two ones', () => {
+        expect(elementAtIndexOne).toEqual([BigInt(1), BigInt(1)]);
+      });
+
+      test('Element at index two should be array with numbers one, two and one in that order', () => {
+        expect(elementAtIndexTwo).toEqual([BigInt(1), BigInt(2), BigInt(1)]);
+      });
+    });
+  });
+
+  describe('Arguments based on predefined pascals triangle', () => {
+    const pascalsTriangle: bigint[][] = firstElevenPascalsTriangleRowsAsNumberArray.map(values => values.map(value => BigInt(value)));
+    const rowIndices: number[] = pascalsTriangle.map((value, index) => index);
+    let generator: AsBigIntGenerator;
+    beforeEach(() => {
+      generator = new AsBigIntGenerator();
+    });
+
+    test.each(rowIndices)
+      ('Argument rows: %i', (rows) => {
+        const createPascalsTriangle = generator.generate(rows);
+        const expectedPascalsTriangle = pascalsTriangle.slice(0, rows + 1);
+
+        expect(createPascalsTriangle).toEqual(expectedPascalsTriangle);
+      });
   });
 });

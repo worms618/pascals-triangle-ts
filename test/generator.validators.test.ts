@@ -1,4 +1,4 @@
-import { validateArgumentRows } from "../src/utils";
+import { validateArgumentRows } from "../src/generator";
 
 describe('Utils', () => {
   describe('Argument validators', () => {
