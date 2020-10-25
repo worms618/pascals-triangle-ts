@@ -2,7 +2,8 @@
   "name": "pascals-triangle-ts",
   "version": "0.0.0",
   "description": "A package to create and do things with Pascals Triangle",
-  "main": "dic/index.js",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
     "test": "jest",
     "prebuild": "tslint -c tslint.json -p tsconfig.json --fix && npm test",
