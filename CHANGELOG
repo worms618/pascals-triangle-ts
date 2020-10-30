@@ -1,0 +1,22 @@
+## 0.3.0
+- Add triangle bigint generator
+- Add test for triangle bigint generator
+- Removed utils.ts file
+- Placed validator of rows arugment in file generator.validators.ts
+- Add default argument value to CreateAsNumbers 
+- Adjusted some keywords in package.json
+
+## 0.2.0
+- Add abstraction of triangle generator algorithm class
+- Add test for triangle generator algorithm
+- Changed triangle numbers generator to use abstraction class
+
+## 0.1.1
+- remove preversion to prevent to run test multiple times during version
+
+## 0.1.0
+- Project initiated
+- Add generator for matrix of numbers
+- Add validator of argument rows
+- Add test for generator of number matrix
+- Add test for validator or rows argument

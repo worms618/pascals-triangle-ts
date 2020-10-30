@@ -1,7 +1,7 @@
 {
   "name": "pascals-triangle-ts",
   "version": "0.3.0",
-  "description": "A package to create and do things with Pascals Triangle",
+  "description": "A package to generate pascals triangle in multiple ways",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -9,7 +9,7 @@
     "prebuild": "tslint -c tslint.json -p tsconfig.json --fix && npm test",
     "build": "tsc",
     "version": "npm run build",
-    "postversion": "git push"
+    "postversion": "git push --follow-tags"
   },
   "repository": {
     "type": "git",
@@ -22,7 +22,11 @@
     "Pascals Triangle",
     "Math"
   ],
-  "author": "Remco Vorthoren (remco.boys@gmail.com)",
+  "author": {
+    "email": "remco.boys@gmail.com",
+    "name": "Remco Vorthoren",
+    "url": "https://github.com/worms618"
+  },
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/worms618/pascals-triangle-ts/issues"
