@@ -1,3 +1,9 @@
+## 0.3.1
+- Add .npmignore
+- Write expanded version of README.md
+- Add CHANGELOG
+- Made package ready to deploy
+
 ## 0.3.0
 - Add triangle bigint generator
 - Add test for triangle bigint generator
