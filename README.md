@@ -2,6 +2,8 @@
 
 > A package to generate pascals triangle in multiple ways
 
+[![npm version](https://img.shields.io/npm/v/pascals-triangle-ts.svg)](https://npmjs.org/package/pascals-triangle-ts)
+
 ## Install
 
 ```bash
